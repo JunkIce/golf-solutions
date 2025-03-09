@@ -46,15 +46,19 @@ for solution in data['solutions']:
         _chars=_chars.strip()
 
     #checks and replaces the data
+
     if scoring=='bytes':
         if _bytes!=code:
             _bytes=code
+            
 
     if scoring=='chars':
         if _chars!=code:
             _chars=code
 
 # Writes back to the file (yes i know this is redundant, sue me)
+    if _bytes==_chars: # Removes redundant chars/bytes separation if only one solution
+        _chars=f'{comment[lang]} (same as bytes)'
     file=open(f'./{hole}/{lang}.{extension[lang]}','w',encoding='utf-16')
     file.write(
 f'''{comment[lang]} Bytes
